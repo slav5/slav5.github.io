@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        School empty speaker
+    </title>
+    <style>
+        @keyframes fadein {
+            0%      { opacity: 0; }
+            100%    { opacity: 1; }
+        }
+        html {
+            height: 100%;
+            background: linear-gradient(60deg, #d04b36, rgba(255,0,0,0) 70.71%),
+                        linear-gradient(120deg, #e36511, rgba(0,255,0,0) 70.71%),
+                        linear-gradient(180deg, #ffba00, rgba(0,0,255,0) 70.71%),
+                        linear-gradient(240deg, #00b180, rgba(0,0,255,0) 70.71%),
+                        linear-gradient(300deg, #147aab, rgba(0,0,255,0) 70.71%),
+                        linear-gradient(321deg, #675997, rgba(0,0,255,0) 70.71%);
+        }
+        body {
+            max-width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.5rem;
+        }
+        p {
+            text-align: left;
+            font-size: 1.5rem;
+            color: darkblue;
+        }
+        input {
+            width: 50%;
+            margin-bottom: 7px;
+            font-size: 1.5rem;
+        }
+        button {
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="inputText"/>
+    <br>
+    <button onclick="displayCringe()">
+        text to empty speak like dvoechik
+    </button>
+    <p id="outSpeakContent"></p>
+    <script>
+        var outSpeakContent = document.getElementById('outSpeakContent');
+        var inputText = document.getElementById('inputText');
+        function displayCringe() {
+            outSpeakContent.innerHTML = generateCringe(inputText.value);
+            outSpeakContent.style.animation = 'fadein 1s';
+        }
+        function generateCringe(cringeName) {
+            var cringeHash = hashCringeName(cringeName);
+            return getCringeTemplate(cringeHash, cringeName);
+        }
+        function hashCringeName(cringeName) {
+            var result = 0;
+            for(var i = 0; i < cringeName.length; i++) {
+                result += cringeName.charCodeAt(i);
+            }
+            return result;
+        }
+        function getCringeTemplate(cringeHash, cringeName) {
+            var templates = [
+                `Вот мой стиль – ${cringeName}, он отражает то, что происходит вокруг меня, то, что меня интересует. Правда, это не является законченным утверждением.`, 
+                `Сам по себе ${cringeName} еще ничего не доказывает: порой курица снесет яйцо, а кудахчет так, словно снесла целую планету.`,
+                `Я думаю, настало время, точнее жизненный период, когда стоит задуматься о своей дальнейшей судьбинушке. Наступил момент, когда ${cringeName} можно... Даже нет. Не так. Скорее я подошел к той линии, к той стартовой позиции, с которой обычные люди начинают свой забег к ${cringeName}. Сигнальный выстрел! Пора...`,
+                `Когда тебе приснится ${cringeName}, ты поймешь, как приятно быть просто программой. Даже с глюками. Правда, это не является законченным утверждением. Просто, хочу дать возможность другим начать говорить.`,
+            ];
+            var postTemplates = [
+                'Что касается вопроса содержания, дизъюнктивное нарушение пространственных отношений кажется очень тревожным в свете красноречия этих произведений.',
+                'Что касается вопроса содержания, внутренняя динамика пространственных отношений вносит в сферу дискурса отличительные формальные сопоставления.',
+                'Я согласен / не согласен с некоторыми только что сказанными вещами, но редуктивность фактуры ставит под угрозу изощренную простоту красноречия этих произведений.',
+                'Следует добавить, что подводные качества фактуры контекстуализируют субструктуру критического мышления.'
+            ];
+            var template = templates[cringeHash % templates.length];
+            var postTemplate = postTemplates[cringeHash % postTemplates.length];
+            return template + ' ' + postTemplate;
+        }
+    </script>
+</body>
+
+</html>
